@@ -17,5 +17,14 @@ services:
       - ./scripts/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
       - postgres-data:/var/lib/postgresql/data
 
+  dbeaver:
+    image: "dbeaver/cloudbeaver:24.2.0"
+    ports:
+      - "8978:8978"
+    volumes:
+      - ./docker/dbeaver-workspace:/opt/cloudbeaver/workspace
+    depends_on:
+      - postgres
+
 volumes:
   postgres-data:
